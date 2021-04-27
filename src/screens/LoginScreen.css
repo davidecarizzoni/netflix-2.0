@@ -40,15 +40,15 @@
 .loginScreen__body{
     position: absolute;
     top: 30%; 
-    /* margin-left: auto;
-    margin-right: auto; */
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: auto;
+    margin-right: auto; 
     z-index: 1;
     color: #fff;
     padding: 20px;
     text-align: center;
-
+    /* Important style to center content */
+    left: 0;
+    right: 0;
 }
 
 .loginScreen__body >h1 {
