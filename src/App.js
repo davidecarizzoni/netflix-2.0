@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import HomeScreen from './screens/HomeScreen';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginScreen from './screens/LoginScreen';
 import { auth } from './firebase';
 import { login, logout, selectUser } from './features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import ProfileScreen from './screens/ProfileScreen';
+import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
+
 
 function App() {
 
@@ -23,12 +25,13 @@ function App() {
         }))
       }else{
         //Logged out
-        dispatch(logout);
+        dispatch(logout());
       }
     });
 
     return unsubscribe;
-  }, [])
+  }, [dispatch])
+  // This dependencies allow to redirect when user logout
 
   return (
     <div className="App">
@@ -38,7 +41,11 @@ function App() {
           <LoginScreen />
         ) : (
           <Switch>
-            <Route path="/">
+            <Route path="/profile">
+              <ProfileScreen />
+            </Route>
+
+            <Route exact path="/">
               <HomeScreen />
             </Route>
           </Switch>
